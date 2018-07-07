@@ -1,0 +1,75 @@
+lib.userinfo = COA_INT
+lib.userinfo {
+	10 = TEXT
+	10.data = TSFE:fe_user|user|uid
+	10.wrap = "userid": |,
+	10.required = 1
+
+	20 < .10
+	20.data = TSFE:fe_user|user|username
+	20.wrap = "username": "|",
+
+	30 < .10
+	30.data = TSFE:fe_user|user|name
+	30.wrap = "name": "|",
+
+	40 < .10
+	40.data = TSFE:fe_user|user|email
+	40.wrap = "email": "|",
+
+	50 < .10
+	50.data = TSFE:fe_user|user|image
+	50.split {
+		token = ,
+		cObjNum = 1
+		1 {
+			10 = FILES
+			10 {
+				references {
+					table = fe_users
+					uid.data = TSFE:fe_user|user|uid
+					fieldName = image
+				}
+				renderObj = TEXT
+				renderObj {
+					typolink{
+						parameter.stdWrap{
+							cObject = IMG_RESOURCE
+							cObject{
+								file.import.data = file:current:uid
+								file.treatIdAsReference = 1
+								file.maxW = 300
+								file.maxH = 300c
+							}
+						}
+						returnLast = url
+						forceAbsoluteUrl = 1
+					}
+				}
+			}
+		}
+	}
+	50.wrap = "image": "|"
+
+	wrap = {|}
+}
+
+ajaxCall = PAGE
+ajaxCall {
+	typeNum = 5000
+	10 < lib.userinfo
+
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders {
+			10 {
+				header = Content-Type: application/json
+				replace = 1
+			}
+		}
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+	}
+}
