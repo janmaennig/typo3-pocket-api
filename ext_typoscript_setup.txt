@@ -54,8 +54,8 @@ lib.userinfo {
 	wrap = {|}
 }
 
-ajaxCall = PAGE
-ajaxCall {
+loginApi = PAGE
+loginApi {
 	typeNum = 5000
 	10 < lib.userinfo
 
@@ -64,6 +64,58 @@ ajaxCall {
 		additionalHeaders {
 			10 {
 				header = Content-Type: application/json
+				replace = 1
+			}
+		}
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+	}
+}
+
+lib.addresses = CONTENT
+lib.addresses  {
+	table = tt_address
+	select {
+#		uidInList =
+		pidInList = 109
+#		recursive =
+#		orderBy =
+#		groupBy =
+#		max =
+#		begin =
+#		where =
+#		languageField =
+#		includeRecordsWithoutDefaultTranslation =
+#		selectFields =
+#		join =
+#		leftjoin =
+#		rightjoin =
+	}
+	renderObj = COA
+	renderObj {
+		10 = COA
+		10 {
+			10 = TEXT
+			10.field = company
+			10.noTrimWrap = | company="|" |
+			wrap = <addressItem | />
+		}
+	}
+	wrap = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><addresses>|</addresses>
+}
+
+addressApi = PAGE
+addressApi {
+	typeNum = 5001
+	10 < lib.addresses
+
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders {
+			10 {
+				header = Content-Type: application/rss+xml
 				replace = 1
 			}
 		}
