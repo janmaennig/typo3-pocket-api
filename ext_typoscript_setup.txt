@@ -100,6 +100,35 @@ lib.addresses  {
 			10 = TEXT
 			10.field = company
 			10.noTrimWrap = | company="|" |
+
+			20 = TEXT
+			20.field = address
+			20.noTrimWrap = | address="|" |
+
+			30 = TEXT
+			30.field = city
+			30.noTrimWrap = | city="|" |
+
+			40 = TEXT
+			40.field = zip
+			40.noTrimWrap = | zip="|" |
+
+			50 = TEXT
+			50.field = latitude
+			50.noTrimWrap = | latitude="|" |
+
+			60 = TEXT
+			60.field = longitude
+			60.noTrimWrap = | longitude="|" |
+
+			70 = TEXT
+			70.field = phone
+			70.noTrimWrap = | phone_central="|" |
+
+			80 = TEXT
+			80.field = mobile
+			80.noTrimWrap = | phone_support="|" |
+
 			wrap = <addressItem | />
 		}
 	}
