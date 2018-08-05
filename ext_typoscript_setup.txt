@@ -78,20 +78,7 @@ lib.addresses = CONTENT
 lib.addresses  {
 	table = tt_address
 	select {
-#		uidInList =
 		pidInList = 109
-#		recursive =
-#		orderBy =
-#		groupBy =
-#		max =
-#		begin =
-#		where =
-#		languageField =
-#		includeRecordsWithoutDefaultTranslation =
-#		selectFields =
-#		join =
-#		leftjoin =
-#		rightjoin =
 	}
 	renderObj = COA
 	renderObj {
